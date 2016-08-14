@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>调用结果</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
+</head>
+<body>
+<div class="page-group">
+    <!-- 单个page ,第一个.page默认被展示-->
+    <div class="page">
+        <!-- 标题栏 -->
+        <header class="bar bar-nav">
+            <a class="icon icon-me pull-left open-panel"></a>
+
+            <h1 class="title">查询</h1>
+        </header>
+
+        <!-- 这里是页面内容区 -->
+        <div class="content">
+            <div class="content-block">
+                <div class="content">
+                    <div class="list-block">
+                        <ul>
+                            <li>
+                                <div class="item-content">
+                                    <div class="item-media"><i class="icon icon-form-gender"></i></div>
+                                    <div class="item-inner">
+                                        <div class="item-title label">医院</div>
+                                        <div class="item-input">
+                                            <select id="hos_id">
+                                                <option value="1">胸科</option>
+                                                <option value="2">西青</option>
+                                                <option value="3">四中心</option>
+                                                <option value="4">五中心</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="item-content">
+                                    <div class="item-media"><i class="icon icon-form-gender"></i></div>
+                                    <div class="item-inner">
+                                        <div class="item-title label">类型</div>
+                                        <div class="item-input">
+                                            <select id="type_id">
+                                                <option value="11">服务器</option>
+                                                <option value="12">数据库</option>
+                                                <option value="9">配置</option>
+                                                <option value="17">网址</option>
+                                                <option value="10">WIFI</option>
+                                                <option value="14">其他</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="item-content">
+                                    <div class="item-media"><i class="icon icon-form-gender"></i></div>
+                                    <div class="item-inner">
+                                        <div class="item-title label">状态</div>
+                                        <div class="item-input">
+                                            <select id="status_id">
+                                                <option value="7">正式</option>
+                                                <option value="8">测试</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="item-content">
+                                    <div class="item-media"><i class="icon icon-form-gender"></i></div>
+                                    <div class="item-inner">
+                                        <div class="item-title label">业务</div>
+                                        <div class="item-input">
+                                            <select id="pro_id">
+                                                <option value="5">集成平台</option>
+                                                <option value="6">HIS</option>
+                                                <option value="15">预约平台</option>
+                                                <option value="16">其他</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="content-block">
+                        <div class="row">
+                            <div class="col-100"><a href="javascript:void(0)" onclick="getUrl()"
+                                                    class="button button-big button-fill button-success">提交</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- popup, panel 等放在这里 -->
+<div class="panel-overlay"></div>
+<!-- Left Panel with Reveal effect -->
+<div class="panel panel-left panel-reveal">
+    <div class="content-block">
+        <p>设置</p>
+
+        <p></p>
+
+        <p><a href="#" class="close-panel">关闭</a></p>
+    </div>
+</div>
+
+
+<script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js'
+        charset='utf-8'></script>
+<script type="text/javascript">
+
+    function getUrl() {
+        var hosValue = $("select[id=hos_id] option").not(function () { return !this.selected }).val();
+        var typeValue = $("select[id=type_id] option").not(function () { return !this.selected }).val();
+        var statusValue = $("select[id=status_id] option").not(function () { return !this.selected }).val();
+        var proValue = $("select[id=pro_id] option").not(function () { return !this.selected }).val();
+        var result = "data/getNewData?hospital=" + hosValue + "&type=" + typeValue + "&status=" + statusValue + "&profession=" + proValue;
+        $.ajax({
+            type: 'GET',
+            url: result,
+            // type of data we are expecting in return:
+            dataType: 'json',
+            timeout: 300,
+            context: $('body'),
+            success: function (data) {
+                $.alert(data[0].dataName);
+                //this.append(data.project.html)
+            },
+            error: function (xhr, type) {
+                alert('Ajax error!')
+            }
+        })
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.myloveqian.dao.DictDetailMapper">
+
+    <resultMap id="detailMap" type="java.util.Map">
+        <result property="masterId" column="masterId"/>
+        <result property="detailId" column="detailId"/>
+        <result property="detailName" column="detailName"/>
+    </resultMap>
+
+    <select id="getDictDetail" resultMap="detailMap" parameterType="java.util.Map">
+        SELECT detailId,detailName,masterId from dict_detail
+        WHERE 1=1
+        <if test="masterId!=null">
+            AND masterId= #{masterId,jdbcType=VARCHAR}
+        </if>
+    </select>
+
+</mapper>
