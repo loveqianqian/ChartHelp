@@ -1,7 +1,6 @@
 package cn.myloveqian.controller;
 
 import cn.myloveqian.service.IDictDetailService;
-import cn.myloveqian.service.IDictMasterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -33,8 +32,6 @@ public class DictDetailController {
         Map<String, Object> params = new HashMap<>();
         params.put("masterId", masterId);
         List<Map<String, String>> result = dictDetailService.getDictDetail(params);
-//        String resultJson = JSON.toJSONString(result);
-//        return resultJson;
         return result;
     }
 
