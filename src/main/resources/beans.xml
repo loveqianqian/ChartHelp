@@ -18,7 +18,7 @@
 
     <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="org.sqlite.JDBC"/>
-        <property name="url" value="jdbc:sqlite:G:/IdeaProjects/ChartHelp/src/main/resources/help.db"/>
+        <property name="url" value="jdbc:sqlite:C:/help.db"/>
         <property name="username" value="root"/>
         <property name="password" value="root"/>
         <property name="maxIdle" value="2"/>

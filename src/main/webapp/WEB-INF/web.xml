@@ -5,7 +5,7 @@
 	 http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 
     <welcome-file-list>
-        <welcome-file>r.html</welcome-file>
+        <welcome-file>main.html</welcome-file>
     </welcome-file-list>
 
     <context-param>
